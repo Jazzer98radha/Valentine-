@@ -1,0 +1,52 @@
+<script>
+  const yes = document.getElementById("yes");
+  const no = document.getElementById("no");
+  const hearts = document.getElementById("hearts");
+
+  let scale = 1;
+
+  yes.addEventListener("click", () => {
+    hearts.textContent = "YAY!!! 💖💖💖 See you on our date 😘";
+    confettiHearts();
+  });
+
+  function moveAndShrinkNo() {
+    const card = document.querySelector(".card");
+    const cardRect = card.getBoundingClientRect();
+
+    // random position inside the card
+    const x = Math.random() * (cardRect.width - 80) - cardRect.width / 2;
+    const y = Math.random() * (cardRect.height - 80) - cardRect.height / 2;
+
+    // shrink a bit each time (but not invisible)
+    scale = Math.max(0.4, scale - 0.08);
+
+    no.style.transform = `
+      translate(${x}px, ${y}px)
+      scale(${scale})
+      rotate(${Math.random() * 20 - 10}deg)
+    `;
+  }
+
+  // desktop hover
+  no.addEventListener("mouseenter", moveAndShrinkNo);
+
+  // mobile tap
+  no.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    moveAndShrinkNo();
+  });
+
+  function confettiHearts() {
+    const emojis = ["💖","💘","💝","💕","❤️‍🔥"];
+    let n = 0;
+    const timer = setInterval(() => {
+      hearts.textContent =
+        emojis[Math.floor(Math.random() * emojis.length)] +
+        " " +
+        hearts.textContent;
+      n++;
+      if (n > 10) clearInterval(timer);
+    }, 120);
+  }
+</script>
