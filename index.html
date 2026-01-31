@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Will you be my Valentine? 💘</title>
+  <title>Anuroodles 💘</title>
+
   <style>
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
@@ -13,42 +14,74 @@
       place-items: center;
       background: linear-gradient(135deg, #ffe0ec, #fff7d6);
     }
+
     .card {
-      background: rgba(255,255,255,0.9);
-      border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.92);
       border-radius: 18px;
-      padding: 28px;
+      padding: 30px;
       width: min(520px, 92vw);
       text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
       position: relative;
       overflow: hidden;
     }
-    h1 { margin: 0 0 10px; font-size: 34px; }
-    p { margin: 0 0 18px; font-size: 16px; opacity: 0.85; }
-    .btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+    }
+
+    p {
+      margin: 0 0 20px;
+      font-size: 16px;
+      opacity: 0.85;
+    }
+
+    .btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
     button {
       border: 0;
-      padding: 12px 18px;
+      padding: 14px 22px;
       border-radius: 999px;
-      font-size: 16px;
+      font-size: 17px;
       cursor: pointer;
-      transition: transform .08s ease;
+      transition: transform 0.1s ease;
       position: relative;
-      z-index: 2;
     }
-    button:active { transform: scale(0.98); }
-    #yes { background:#ff2d78; color:white; }
-    #no  { background:#111827; color:white; }
-    .hearts { font-size: 22px; margin-top: 12px; min-height: 30px; }
-    .tiny { margin-top: 14px; font-size: 12px; opacity: 0.6; }
+
+    #yes {
+      background: #ff2d78;
+      color: white;
+    }
+
+    #no {
+      background: #111827;
+      color: white;
+    }
+
+    .hearts {
+      font-size: 22px;
+      margin-top: 14px;
+      min-height: 34px;
+    }
+
+    .tiny {
+      margin-top: 18px;
+      font-size: 12px;
+      opacity: 0.6;
+    }
   </style>
 </head>
 
 <body>
   <div class="card">
-    <h1>Will you be my Valentine? 💘</h1>
-    <p>I made this just for you.</p>
+    <h1>Anuroodles, will you be my Valentine? 💘</h1>
+    <p>From Jarrod 💕</p>
 
     <div class="btns">
       <button id="yes">Yes 😍</button>
@@ -56,7 +89,7 @@
     </div>
 
     <div class="hearts" id="hearts"></div>
-    <div class="tiny">P.S. “No” is being shy 🤭</div>
+    <div class="tiny">P.S. “No” is just playing hard to get 😌</div>
   </div>
 
   <script>
@@ -67,16 +100,16 @@
     let scale = 1;
 
     yes.addEventListener("click", () => {
-      hearts.textContent = "YAY!!! 💖💖💖 See you on our date 😘";
+      hearts.textContent = "YAY!!! 💖💖💖 I knew it 😘";
       confettiHearts();
     });
 
     function moveAndShrinkNo() {
       const card = document.querySelector(".card");
-      const cardRect = card.getBoundingClientRect();
+      const rect = card.getBoundingClientRect();
 
-      const x = Math.random() * (cardRect.width - 80) - cardRect.width / 2;
-      const y = Math.random() * (cardRect.height - 80) - cardRect.height / 2;
+      const x = Math.random() * (rect.width - 100) - rect.width / 2;
+      const y = Math.random() * (rect.height - 120) - rect.height / 2;
 
       scale = Math.max(0.4, scale - 0.08);
 
@@ -96,14 +129,14 @@
 
     function confettiHearts() {
       const emojis = ["💖","💘","💝","💕","❤️‍🔥"];
-      let n = 0;
+      let count = 0;
       const timer = setInterval(() => {
         hearts.textContent =
           emojis[Math.floor(Math.random() * emojis.length)] +
           " " +
           hearts.textContent;
-        n++;
-        if (n > 10) clearInterval(timer);
+        count++;
+        if (count > 10) clearInterval(timer);
       }, 120);
     }
   </script>
